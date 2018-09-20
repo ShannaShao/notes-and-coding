@@ -1,0 +1,65 @@
+#导入模块
+import tkinter
+from tkinter import *
+import random
+import time
+
+#创建窗口
+win = tkinter.Tk()
+#增加窗口标题
+win.title("随机点名")
+#设置窗口大小
+win.minsize(400,200)
+
+#姓名列表
+namelist = ["名字1","名字2","名字3","名字4","名字5","名字6","名字7","名字8","名字9","名字10","名字11","名字12","名字13"]
+#产生随机数
+num = random.randrange(0,len(namelist))
+#将随机数传入列表索引 按索引产生姓名
+name = namelist[num]
+#定义空列表 通过列表判断开始结束按钮按下情况
+list = []
+
+#start按钮调用函数
+def func1():
+    #判断如果按下开始按钮前 从未按过按钮 或是按下开始按钮之前按过结束按钮
+    if list == [] or list[-1] == 1 :
+        #像列表添加一个0 表示按下开始按钮
+        list.append(0)
+        while True:
+            #如果并未按下结束按钮 则往下执行
+            if list[-1] != 1:
+                func()
+                #表示随机姓名出现的时间间隔
+                time.sleep(0.05)
+            #如果按下结束按钮 跳出循环
+            elif list[-1]==1:
+                break
+
+#此函数表示产生随机姓名并改变姓名标签
+def func():
+    #产生随机数
+    num = random.randrange(0, len(namelist))
+    #通过随机数产生随机姓名
+    name = namelist[num]
+    #改变姓名标签文本内容
+    label1.config(text=name)
+    #窗口更新
+    win.update()
+
+#结束按钮定义的函数，通过向姓名列表中插入0来判断是否按下结束按钮
+def func2():
+    list.append(1)
+
+#姓名框
+label1= tkinter.Label(win,text= name,bg = "pink" ,width = 6 ,height=1,font = ("黑体",75))
+label1.pack()
+#开始按钮
+start = tkinter.Button(win,text = "开始",font = ("黑体",30),command = func1)
+start.place(x = 65,y= 130)
+#结束按钮
+end = tkinter.Button(win,text = "结束",font = ("黑体",30),command = func2)
+end.place(x= 215,y=130)
+
+#显示win窗口
+win.mainloop()
