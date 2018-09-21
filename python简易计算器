@@ -1,0 +1,170 @@
+#导入模块
+import tkinter
+class JiSuanQi:
+    #初始化魔术方法 界面布局
+    def __init__(self):
+        #初始化公用属性
+        #运算标志
+        self.isys = False
+        #运算列表
+        self.yslist = []
+        # 初始化界面
+        self.initwindow()
+
+    #界面布局方法
+    def initwindow(self):
+        # 创建窗口
+        win = tkinter.Tk()
+        # 窗口标题
+        win.title("计算器")
+        # 窗口大小
+        win.minsize(312, 298)
+        # 全局数字变量
+        self.num = tkinter.StringVar()
+        self.num.set(0)
+        # 添加标签显示运算结果
+        label = tkinter.Label(win, textvariable=self.num, bg="white", font=("黑体", 50),anchor = "w")
+        label.place(x=0, y=0, width=312, height=70)
+        # 添加按钮
+        button9 = tkinter.Button(win, text="9", bg="pink", fg="white", width=3, height=1, font=("黑体", 25),
+                                 command=lambda: self.pressno("9"))
+        button7 = tkinter.Button(win, text="7", bg="pink", fg="white", width=3, height=1, font=("黑体", 25),
+                                 command=lambda: self.pressno("7"))
+        button8 = tkinter.Button(win, text="8", bg="pink", fg="white", width=3, height=1, font=("黑体", 25),
+                                 command=lambda: self.pressno("8"))
+        button4 = tkinter.Button(win, text="4", bg="pink", fg="white", width=3, height=1, font=("黑体", 25),
+                                 command=lambda: self.pressno("4"))
+        button5 = tkinter.Button(win, text="5", bg="pink", fg="white", width=3, height=1, font=("黑体", 25),
+                                 command=lambda: self.pressno("5"))
+        button6 = tkinter.Button(win, text="6", bg="pink", fg="white", width=3, height=1, font=("黑体", 25),
+                                 command=lambda: self.pressno("6"))
+        button1 = tkinter.Button(win, text="1", bg="pink", fg="white", width=3, height=1, font=("黑体", 25),
+                                 command=lambda: self.pressno("1"))
+        button2 = tkinter.Button(win, text="2", bg="pink", fg="white", width=3, height=1, font=("黑体", 25),
+                                 command=lambda: self.pressno("2"))
+        button3 = tkinter.Button(win, text="3", bg="pink", fg="white", width=3, height=1, font=("黑体", 25),
+                                 command=lambda: self.pressno("3"))
+        button0 = tkinter.Button(win, text="0", bg="pink", fg="white", width=3, height=1, font=("黑体", 25),
+                                 command=lambda: self.pressno("0"))
+        button10 = tkinter.Button(win, text="+", bg="pink", fg="white", width=3, height=1, font=("黑体", 25),
+                                  command=lambda: self.pressys("+"))
+        button11 = tkinter.Button(win, text="-", bg="pink", fg="white", width=3, height=1, font=("黑体", 25),
+                                  command=lambda: self.pressys("-"))
+        button12 = tkinter.Button(win, text="x", bg="pink", fg="white", width=3, height=1, font=("黑体", 25),
+                                  command=lambda: self.pressys("*"))
+        button13 = tkinter.Button(win, text="÷", bg="pink", fg="white", width=3, height=1, font=("黑体", 25),
+                                  command=lambda: self.pressys("/"))
+        button14 = tkinter.Button(win, text="=", bg="pink", fg="white", width=3, height=2, font=("黑体", 31),
+                                  command=self.getresult)
+
+        button17 = tkinter.Button(win, text="±", bg="pink", fg="white", width=3, height=1, font=("黑体", 25),
+                                  command=self.zhengfu)
+        button18 = tkinter.Button(win, text=".", bg="pink", fg="white", width=3, height=1, font=("黑体", 25),
+                                  command=self.xiaoshu)
+        button19 = tkinter.Button(win, text="C", bg="pink", fg="white", width=3, height=2, font=("黑体", 31),
+                                  command=self.clearall)
+
+        # 按钮放置
+        button7.place(x=0, y=70)
+        button8.place(x=61, y=70)
+        button9.place(x=122, y=70)
+        button10.place(x=183, y=70)
+        button19.place(x=244, y=70)
+        button4.place(x=0, y=127)
+        button5.place(x=61, y=127)
+        button6.place(x=122, y=127)
+        button11.place(x=183, y=127)
+        button1.place(x=0, y=184)
+        button2.place(x=61, y=184)
+        button3.place(x=122, y=184)
+        button12.place(x=183, y=184)
+        button18.place(x=0, y=241)
+        button0.place(x=61, y=241)
+        button17.place(x=122, y=241)
+        button13.place(x=183, y=241)
+        button14.place(x=244, y=184)
+
+        # 显示窗口
+        win.mainloop()
+
+    #添加数字按钮操作
+    def pressno(self,no):
+        #判断用户是否按下了运算按钮
+        if self.isys == True:
+            #按下了运算按钮
+            self.num.set(no)
+            #运算标志复位
+            self.isys = False
+        else:
+            #没有按下运算按钮
+
+            # 判断界面原始数字是否为0
+            oldno = self.num.get()
+            if oldno == "0":
+                # 如果界面为0 获取用户按下的数字 显示到界面中
+                self.num.set(no)
+            else:
+                # 如果界面不为零，其他数字连接进来
+                self.num.set(self.num.get() + no)
+    #添加运算符操作
+    def pressys(self,ysflag):
+        print(ysflag)
+
+        #设置运算被按下的标志
+        self.isys = True
+        #将每次运算操作的信息计入列表
+        #按下按钮 获取界面中已有的数字
+        self.yslist.append(self.num.get())
+        #记录当前运算符号
+        self.yslist.append(ysflag)
+        print(self.yslist)
+
+    #获取运算结果操作
+    def getresult(self):
+
+        #获取当前界面中的数字 并且加入运算列表
+        self.yslist.append(self.num.get())
+        #进行运算操作
+        result = eval("".join(self.yslist))
+        #复位
+        self.isys = False
+        # 恢复运算列表
+        self.yslist = []
+        # 将结果放入界面中
+        self.num.set(result)
+
+    #清空键
+    def clearall(self):
+
+        #恢复标志位
+        self.isys = False
+        #恢复运算列表
+        self.yslist = []
+        #界面设置为0
+        self.num.set(0)
+
+    #正负操作
+    def zhengfu(self):
+        strnum = self.num.get()
+
+        if strnum[0] == '-':
+            self.num.set(strnum[1:])
+        elif strnum[0] != '-' and strnum != '0':
+            self.num.set('-' + strnum)
+
+    #小数点添加操作
+    def xiaoshu(self):
+        oldno = self.num.get()
+        print(oldno,type(oldno))
+        #如果是正整数 可添加小数点
+        if oldno.isdigit():
+            self.num.set(self.num.get() + ".")
+        #如果是负整数 可添加小数点
+        elif oldno[0] == "-":
+            newno = oldno[1:]
+            if newno.isdigit():
+                self.num.set(self.num.get() + ".")
+        print(self.yslist)
+
+#实例化对象
+a = JiSuanQi()
