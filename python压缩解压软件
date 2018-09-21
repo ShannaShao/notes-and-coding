@@ -1,0 +1,76 @@
+#导入模块
+import tkinter
+from tkinter import filedialog
+import zipfile
+import os
+from tkinter import messagebox
+
+class YaSuo:
+    def __init__(self):
+        # 用于判断压缩文件时是否已先添加了文件
+        self.paths = 0
+        #初始化界面
+        self.win()
+    def win(self):
+        # 创建窗口
+        root = tkinter.Tk()
+        # 设置窗口大小
+        root.minsize(435, 200)
+        # 设置按钮
+        btn_add = tkinter.Button(root, text="添加文件", bg = "white",font = ("黑体",25),width = 8,command=self.pressadd).grid(row=0, column=0)
+        btn_zip = tkinter.Button(root, text="压缩文件", bg = "white",font = ("黑体",25),width = 8, command=self.presszip).grid(row=0, column=1)
+        btn_unzip = tkinter.Button(root, text="解压文件", bg = "white",font = ("黑体",25),width = 8, command=self.pressunzip).grid(row=0, column=2)
+        # 标签栏显示信息
+        self.val = tkinter.StringVar()
+        # 标签栏的初始信息
+        self.val.set("没有文件信息")
+        # 设置标签栏
+        label1 = tkinter.Label(root, textvariable=self.val, bg="pink",width = 62).grid(row=1, column=0, columnspan=3)
+        # 显示窗口
+        root.mainloop()
+
+    #添加文件
+    def pressadd(self):
+        #选择添加的文件
+        self.paths = tkinter.filedialog.askopenfilenames(title = "请选择添加的文件")
+        print(self.paths)
+        #对文件路径进行换行显示
+        strfile = "\n".join(self.paths)
+        print(strfile)
+        #将文件信息写入val
+        self.val.set(strfile)
+        #弹出文件添加成功对话框
+        tkinter.messagebox.showinfo("提示", "文件添加成功，文件路径为：\n"+strfile)
+
+    #压缩文件
+    def presszip(self):
+        #判断是否已经添加了文件
+        if self.paths == 0:
+            #未添加文件 弹出提示添加文件窗口
+            tkinter.messagebox.showinfo("提示", "请先添加文件！")
+        #已添加了文件
+        else:
+            #弹出对话框返回压缩路径
+            dirpath = tkinter.filedialog.askdirectory(title = "请选择压缩路径")
+            print(dirpath)
+            zf = zipfile.ZipFile(dirpath+"/压缩文件.zip","w")
+            #遍历文件信息
+            for i in self.paths:
+                zf.write(i,os.path.basename(i))
+            zf.close()
+            #弹出压缩成功提示窗
+            tkinter.messagebox.showinfo("提示","文件压缩成功，压缩路径为："+dirpath+"/压缩文件.zip")
+
+    #解压文件
+    def pressunzip(self):
+        #选择压缩文件
+        uzf = tkinter.filedialog.askopenfilename(title = "选择解压文件",filetypes =[("zip file","*.zip")])
+        #选择解压路径
+        uzp = tkinter.filedialog.askdirectory(title = "选择解压路径")
+        zf = zipfile.ZipFile(uzf,"r")
+        #解压文件
+        zf.extractall(uzp)
+        zf.close()
+        #弹出解压成功弹窗
+        tkinter.messagebox.showinfo("提示","文件解压成功，解压文件路径为：\n"+uzp)
+ys = YaSuo()
