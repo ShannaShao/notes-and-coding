@@ -1,0 +1,673 @@
+html与js特效部分
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>我的购物车-小米商城</title>
+    <link rel="icon" href="./images/logo.png">
+    <link rel="stylesheet" href="shopcart.css">
+
+
+    <!-- Bootstrap -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="./js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="container-fluid" id="nav">
+        <div class="container" style="height: 100px;">
+            <div class="row" style="height: 100px;">
+                <div class="col-md-7 navleft">
+                    <a href="index.html"><img src="./images/logo.png" alt=""></a>
+                    <span id='navtitle'>我的购物车</span>
+                    <span id='tishi'>温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算</span>
+                </div>
+                <div class="col-md-3 col-md-offset-2 navright">
+                    <a href="" id="gerenzhongxin"><span>个人中心<span class="glyphicon glyphicon-chevron-down"></span></span></a>
+                    <span>&nbsp;|</span>
+                    <a href="">我的订单</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 个人中心下拉菜单 -->
+    <div class="container grzxxl">
+        <div class="grzx">
+              <ul>
+                <li><a href="#">小米菜单</a></li>
+                <li><a href="#">我的喜欢</a></li>
+                <li><a href="#">评价晒单</a></li>
+                <li><a href="#">退出登录</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 购物车部分 -->
+    <div class="container-fluid zhongjian">
+        <div class="container">
+            <div class="row biao">
+                <div class="col-md-12 biaoti">
+                    <form action="" method="post">
+                        <div class="row">
+                            <div class="col-md-1 xuankuang">
+                                <input type="checkbox" name="xuan" value="0" id="quanxuan">全选
+                            </div>
+                            <div class="col-md-1 tu"></div>
+                            <div class="col-md-3">商品名称</div>
+                            <div class="col-md-1" style="text-align: right;">单价</div>
+                            <div class="col-md-3" style="text-align: center;">数量</div>
+                            <div class="col-md-2" style="text-align: center;">小计</div>
+                            <div class="col-md-1">操作</div>
+                        </div>
+                        <div class="row shangpin">
+                            <div class="col-md-11 xuankuang">
+                                <input type="checkbox" name="xuan" value="1" class="choose">
+                                <img src="./images/lxx.jpg" alt="">
+                                <span class="mingcheng">90分金属旅行箱 20寸 银色</span>
+                                <span class="price">1799</span><span>元</span>
+                                <input type="button" name="name" value="-" class="reduce" />
+                                <input type="text" name="name" value="1" class="textNum" />
+                                <input type="button" name="name" value="+" class="add" />
+                                <input type="text" name="" value="1799" class="xiaoji"><span class="yuan">元</span>
+                            </div>
+                            <div class="col-md-1 caozuo">
+                                <span class="glyphicon glyphicon-remove-circle del"></span>
+                            </div>
+                        </div>
+                        <div class="row shangpin">
+                            <div class="col-md-11 xuankuang">
+                                <input type="checkbox" name="xuan" value="2" class="choose" >
+                                <img src="./images/ej.jpg" alt="">
+                                <span class="mingcheng">1MORE头戴式耳机 红色</span>
+                                <span class="price">299</span><span>元</span>
+                                <input type="button" name="name" value="-" class="reduce" />
+                                <input type="text" name="name" value="1" class="textNum" />
+                                <input type="button" name="name" value="+" class="add" />
+                                <input type="text" name="" value="299" class="xiaoji"><span class="yuan">元</span>
+                            </div>
+                            <div class="col-md-1 caozuo">
+                                <span class="glyphicon glyphicon-remove-circle del"></span>
+                            </div>
+                        </div>
+                        <div class="row jiesuanlan">
+                            <div class="col-md-1 continueshop">
+                                <a href="">继续购物</a>
+                            </div>
+                            <div class="col-md-1 col-md-offset-6">
+                                <p id="zj">总计：</p>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" name="totalprice" value="0元" id="zongji">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="button" value="去结算" id="jiesuan">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+        <!-- 页面底部 -->
+    <div class="container-fluid bottom">
+        <div class="container">
+            <!-- 上面一行 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="btop">
+                        <table id="table1">
+                            <tr>
+                                <td class="t"><a href="" class="hovero1">预约维修服务</a></td>
+                                <td class="t"><a href="" class="hovero1">7天无理由退货</a></td>
+                                <td class="t"><a href="" class="hovero1">15天免费换货</a></td>
+                                <td class="t"><a href="" class="hovero1">满150元包邮</a></td>
+                                <td><a href="" class="hovero1">520余家售后网点</a></td>
+                            </tr>
+                        </table>
+                        <hr color="grey" size=1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- 合作列表 -->
+                    <div id="hezuolist">
+                        <table>
+                            <tr id="hezuotitle">
+                                <td><a href="">帮助中心</a></td>
+                                <td><a href="">服务支持</a></td>
+                                <td><a href="">线下门店</a></td>
+                                <td><a href="">关于小米</a></td>
+                                <td><a href="">关注我们</a></td>
+                                <td><a href="">特色服务</a></td>
+                            </tr>
+                            <tr class="hzcontent">
+                                <td><a href="" class="hovero1">账户管理</a></td>
+                                <td><a href="" class="hovero1">售后政策</a></td>
+                                <td><a href="" class="hovero1">小米之家</a></td>
+                                <td><a href="" class="hovero1">了解小米</a></td>
+                                <td><a href="" class="hovero1">新浪微博</a></td>
+                                <td><a href="" class="hovero1">F码通道</a></td>
+                            </tr>
+                            <tr class="hzcontent">
+                                <td><a href="" class="hovero1">购物指南</a></td>
+                                <td><a href="" class="hovero1">自助服务</a></td>
+                                <td><a href="" class="hovero1">服务网点</a></td>
+                                <td><a href="" class="hovero1">加入小米</a></td>
+                                <td><a href="" class="hovero1">官方微信</a></td>
+                                <td><a href="" class="hovero1">礼物码</a></td>
+                            </tr>
+                            <tr class="hzcontent">
+                                <td><a href="" class="hovero1">订单操作</a></td>
+                                <td><a href="" class="hovero1">相关下载</a></td>
+                                <td><a href="" class="hovero1">授权体验店</a></td>
+                                <td><a href="" class="hovero1">投资者关系</a></td>
+                                <td><a href="" class="hovero1">联系我们</a></td>
+                                <td><a href="" class="hovero1">防伪查询</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- 联系电话 -->
+                    <div id="pnumber">
+                        <div id="pnum">400-100-5678</div>
+                        <div class="numt">周一至周日 8:00-18:00</div>
+                        <div class="numt">（仅收市话费）</div>
+                        <div id="lianxikefu">
+                            <a href=""><div>联系客服</div></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 最底部 -->
+    <div class="container-fluid bottom2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="bcenter">
+                        <div id="bcleft">
+                            <div id="bcleftlogo">
+                                    <img src="./images/logo.png" alt="">
+                            </div>
+                            <a href="" class="hovero1">小米商城</a><span>&nbsp|</span>
+                            <a href="" class="hovero1">MIUI</a><span>&nbsp|</span>
+                            <a href="" class="hovero1">米家</a><span>&nbsp|</span>
+                            <a href="" class="hovero1">米聊</a><span>&nbsp|</span>
+                            <a href="" class="hovero1">多看</a><span>&nbsp|</span>
+                            <a href="" class="hovero1">游戏</a><span>&nbsp|</span>
+                            <a href="" class="hovero1">路由器</a><span>&nbsp|</span>
+                            <a href="" class="hovero1">米粉卡</a><span>&nbsp|</span>
+                            <a href="" class="hovero1">政企服务</a><span>&nbsp|</span>
+                            <a href="" class="hovero1">小米天猫店</a><span>&nbsp|</span>
+                            <a href="" class="hovero1">隐私政策</a><span>&nbsp|</span>
+                            <a href="" class="hovero1">问题反馈</a><span>&nbsp|</span>
+                            <a href="" class="hovero1">廉正举报</a><span>&nbsp|</span>
+                            <a href="" class="hovero1">Select Region</a>
+                            <br>
+                            <a href="" class="hovero1" class="zhenghao">©mi.com 京ICP证110507号</a>
+                            <a href="" class="hovero1" class="zhenghao">京ICP备10046444号</a>
+                            <a href="" class="hovero1" class="zhenghao">京公网安备11010802020134号</a>
+                            <a href="" class="hovero1" class="zhenghao">京网文[2017]1530-131号</a>
+                            <br>
+                            <span>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</span>
+                        </div>
+                        <div id="bcright">
+                            <img src="./images/renzheng1.png" alt="" height="28px">
+                            <img src="./images/v-logo-1.png" alt="">
+                            <img src="./images/v-logo-2.png" alt="">
+                            <img src="./images/v-logo-3.png" alt="">
+                            <img src="./images/v-logo-4.png" alt="">
+                        </div>
+                    </div>
+                    <div id="bcbottom">
+                        <img src="./images/slogan2016.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- js特效 -->
+    <script src="./js/bootstrap.js"></script>
+    <script>
+        /*个人中心下拉菜单*/
+        $('#gerenzhongxin').mouseover(function(){
+            $('#gerenzhongxin').css('color','#ff6700');
+            $('#gerenzhongxin span').css('color','#ff6700');
+			$('.grzxxl').show();
+        })
+        $('#gerenzhongxin').mouseout(function(){
+            $('#gerenzhongxin').css('color','gray');
+            $('#gerenzhongxin span').css('color','gray');
+            $('.grzxxl').hide();
+        })
+        $('.grzxxl').mouseout(function(){
+            $(this).hide();
+        })
+        $('.grzxxl').mouseover(function(){
+            $(this).show();
+        })
+        $('.grzxxl li').mouseover(function(){
+            $(this).css('background','rgb(250,250,250)');
+            $(this).children().css('color','#ff6700');
+        })
+        $('.grzxxl li').mouseout(function(){
+            $(this).css('background','#fff');
+            $(this).children().css('color','#000');
+        })
+        
+        /*a标签变橘黄色*/
+        $('.hovero1').mouseover(function(){
+			$(this).css('color','rgb(255,103,0)');
+        })
+        $('.hovero1').mouseout(function(){
+            $(this).css('color','rgb(66,66,66)');
+        })
+
+        /*设置数量和总计不可输入*/
+        $(".textNum").prop("disabled", true);
+        $('#zongji').prop("disabled",true);
+        $('.xiaoji').prop("disabled",true);
+
+        /*总价*/
+        function totalPrice(){
+            var sumprice = 0;
+            $('.choosed').each(function(){
+                var all = parseInt($('.choosed').val());
+                sumprice += all;
+            })
+            $('#zongji').val(sumprice+"元");
+        }
+
+        /*数量加号*/
+        $('.add').click(function(){
+            var num = $(this).siblings('.textNum').val();
+            num++;
+            $(this).siblings(".textNum").val(num);
+            if (num>0){
+                $('.reduce').prop("disabled", false);
+            }
+            var price = $(this).siblings('.price').text();
+            var xiaoji = price * num;
+            $(this).siblings(".xiaoji").val(xiaoji);
+            totalPrice();
+        })
+        
+        /*数量减*/
+        $('.reduce').click(function(){
+            var num = $(this).siblings('.textNum').val();
+            if (num>0){
+                num--;
+                $(this).siblings(".textNum").val(num);
+                var price = $(this).siblings('.price').text();
+                var xiaoji = price * num;
+                $(this).siblings(".xiaoji").val(xiaoji);
+                totalPrice();
+            }else{
+                $(this).prop("disabled", true);
+            };
+        })
+
+        /*全选*/
+        $('#quanxuan').click(function(){
+            if($(this).is(":checked")==true){
+                $('.choose').prop("checked",true);
+                $('.choose').siblings('.xiaoji').addClass("choosed");
+            }else{
+                $('.choose').prop("checked",false);
+                $('.choose').siblings('.xiaoji').removeClass("choosed");
+            };
+            totalPrice();
+        })
+        
+
+        /*商品选中*/
+        $('.choose').click(function(){
+            if($(this).is(":checked")==true){
+                $(this).siblings('.xiaoji').addClass("choosed");
+                totalPrice();
+            }else{
+                $(this).siblings('.xiaoji').removeClass("choosed");
+                totalPrice();
+            };
+            
+        })
+        /*删除商品*/
+        $('.del').click(function(){
+            $(this).parents('.shangpin').find('.xiaoji').removeClass("choosed");
+            totalPrice();
+            $(this).parents('.shangpin').css('display','none');
+        })
+
+    </script>
+</body>
+</html>
+
+
+
+css部分
+
+*{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+a{
+    text-decoration:none; 
+}
+#nav{
+    padding:0px;
+    height:100px;
+    border-bottom:3px solid #ff6700;
+}
+.navleft{
+    position: relative;
+    top:20px;
+}
+#navtitle{
+    position: relative;
+    left:20px;
+    top:10px;
+    font-size:25px;
+}
+#tishi{
+    position: relative;
+    top: 10px;
+    left:20px;
+    font-size:12px;
+    color:gray;
+}
+.navright{
+    text-align: right;
+    position: relative;
+    top: 46px;
+    color:gray;
+}
+.navright a{
+    color: gray;
+}
+.grzxxl{
+    display: none;
+}
+.grzx{
+    position: absolute;
+    top: 63px;
+    height:80px;
+    width:100px;
+    float: right;
+    right:260px;
+    box-shadow: 1px 1px 1px 1px rgb(224,224,224);
+    text-align: center;
+    background: #fff;
+    z-index:999;
+}
+.grzx a{
+    color:#000;
+}
+.zhongjian{
+    padding:0px;
+    background:rgb(241,241,241);
+    height: 480px;
+}
+
+.biao{
+    background: #fff;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+.biaoti{
+    height:60px;
+    line-height: 60px;
+}
+.shangpin{
+    height:100px;
+    background: #fff;
+    border-top: 1px solid rgb(224,224,224);
+}
+.shangpin div{
+    height:100px;
+    line-height: 100px;
+}
+.shangpin img{
+    position: relative;
+    top:-15px;
+    left:70px;
+    height: 60px;
+    margin-top: 20px;
+}
+.mingcheng{
+    position: relative;
+    display: inline-block;
+    height: 100px;
+    width:350px;
+    left:80px;
+    margin: 0;
+    font-size: 20px;
+}
+.price{
+    position: relative;
+    display: inline-block;
+    height: 100px;
+    width: 120px;
+    font-size:15px;
+    text-align: right;
+}
+.reduce,.textNum,.add{
+    position: relative;
+    top:-3px;
+    left:50px;
+    height: 80px;
+    background: #fff;
+    border: none;
+}
+.textNum{
+    text-align: center;
+}
+.xiaoji{
+    position: relative;
+    top:-3px;
+    left:100px;
+    height: 80px;
+    width: 100px;
+    background: #fff;
+    border: none;
+    color:#ff6700;
+    text-align:right;
+}
+.yuan{
+    position: relative;
+    top:-3px;
+    left:100px;
+    color:#ff6700;
+}
+.caozuo span{
+    position: relative;
+    top:40px;
+    color:rgb(202, 201, 201);
+    font-size:20px;
+}
+.caozuo span:hover{
+    color: #ff6700;
+}
+
+
+.num{
+    text-align: center;
+}
+.jiesuanlan{
+    position: relative;
+    top: 20px;
+    background: #fff;
+    height: 60px;
+}
+
+#zongji{
+    position: relative;
+    left:-20px;
+    height:60px;
+    width: 100px;
+    background: #fff;
+    border: none;
+    color:#ff6700;
+    text-align: left;
+}
+#jiesuan{
+    position: relative;
+    width:180px;
+    background: #ff6700;
+    color: #fff;
+    border:none;
+    padding: 0px;
+}
+#zj{
+    text-align: right;
+}
+
+
+
+
+.bottom{
+    position: relative;
+    top:75px;
+    height: 300px;
+}
+#btop #table1{
+    width:100%;
+    color:rgb(66,66,66);
+}
+#table1 tr td{
+    text-align: center;
+}
+.t{
+    border-right:1px solid grey;
+}
+#table1 tr td a {
+    display:block;
+    margin:0px auto;
+    font-size:18px;
+    color:rgb(66,66,66);
+    font-weight:100;
+}
+#hezuolist{
+    height: 150px;
+    width:866px;
+    border-right: 1px solid grey;
+}
+#hezuolist table{
+    width:100%;
+}
+#hezuotitle td a {
+    color:rgb(66,66,66);
+    font-size:16px;
+}
+#hezuotitle td{
+    padding-top:20px;
+    padding-bottom:30px;
+}
+.hzcontent td a{
+    color:rgb(117,117,117);
+    font-size:14px;
+}
+#pnumber{
+    position: absolute;
+    top:0px;
+    left:896px;
+    width:274px;
+}
+#pnum{
+    position: absolute;
+    top:20px;
+    width:100%;
+    text-align: center;
+    font-size:20px;
+    color:rgb(255,103,0);
+}
+.numt{
+    position: relative;
+    top:50px;
+    width:100%;
+    text-align: center;
+    color:rgb(117,117,117);
+    font-size:12px;
+}
+#lianxikefu{
+    position: relative;
+    top:80px;
+}
+#lianxikefu div{
+    position: relative;
+    left:35%;
+    width:30%;
+    text-align: center;
+    font-size:13px;
+    color:rgb(255,103,0);
+    margin:0px;
+    border:1px solid rgb(255,103,0);
+}
+#lianxikefu div:hover{
+    background: rgb(255,103,0);
+    color:#fff;
+}
+
+.bottom2{
+    position: relative;
+    top:50px;
+    background:rgb(239,239,239);
+    height: 200px;
+}
+#bcenter{
+    position: relative;
+    width:100%;
+    height:150px;
+}
+#bcleft{
+    position: absolute;
+    top:50px;
+    width:60%;
+    height:80px;
+}
+#bcleftlogo{
+    position: relative;
+    top:-5px;
+}
+#bcright{
+    position: absolute;
+    top:50px;
+    right:0px;
+    width:40%;
+    height:80px;
+}
+#bcleft a{
+    position: relative;
+    top:-65px;
+    left:60px;
+    color:rgb(66,66,66);
+    font-size: 10px;
+}
+#bcleft span{
+    position: relative;
+    top:-65px;
+    left:60px;
+    color:rgb(66,66,66);
+    font-size: 10px;
+}
+#bcright img{
+    position: relative;
+    left:25px;
+}
+#bcbottom{
+    width:100%;
+    text-align: center;
+}
