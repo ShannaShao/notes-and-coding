@@ -1,0 +1,27 @@
+from bs4 import BeautifulSoup
+import requests
+
+# base_url = "http://www.biquyun.com/17_17189/"
+
+#soup对象的获取
+def getSoup():
+    req = requests.get(base_url)
+    req.encoding = 'gbk'
+    soup = BeautifulSoup(req.text,'html.parser')
+    return soup
+
+#每章节链接获取及写入文件 
+def getLink(soup):
+    with open(bookname+'.txt', 'w+', encoding='utf-8') as f:
+        for link in soup.select('dd a'):
+            f.write(link.string+'\n')
+            req = requests.get('http://www.biquyun.com' + link.get('href'))
+            req.encoding = 'gbk'
+            soup1 = BeautifulSoup(req.text, 'html.parser')
+            f.write(soup1.select('#content')[0].text+'\n')
+
+if __name__ == '__main__':
+    base_url = input('请输入小说目录地址：') #小说目录地址 如：http://www.biquyun.com/17_17189/
+    bookname = input('请输入小说名字：') 
+    soup = getSoup()
+    getLink(soup)
